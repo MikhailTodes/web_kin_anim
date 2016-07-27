@@ -40,7 +40,7 @@ def login_required(f):
         if 'logged_in' in session:
             return f(*args, **kwargs)
         else:
-            flash('You need to login first.')
+            flash('You need to login first!')
             return redirect(url_for('login'))
     return wrap
 
@@ -157,7 +157,7 @@ def stop():
         p_status = str(p_status)
     except:
         p_status = "conversion failed"
-    flash('Attempting stop process.\n Returned status: {0:s}'.format(p_status))
+    flash('Attempting stop process.\n Returned status: {0:s}'+ str(p_status))
     return render_template('index.html', ws_url=session['ros_ws_url'], \
                                 user=session['username'], port=session['port'],\
                                 ip=get_external_ip())    
