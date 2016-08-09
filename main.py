@@ -157,7 +157,7 @@ def stop():
         p_status = str(p_status)
     except:
         p_status = "conversion failed"
-    flash('Attempting stop process.\n Returned status: {0:s}'+ str(p_status))
+    flash('Attempting stop process.\n Returned status: {0:s}'.format(p_status))
     return render_template('index.html', ws_url=session['ros_ws_url'], \
                                 user=session['username'], port=session['port'],\
                                 ip=get_external_ip())    

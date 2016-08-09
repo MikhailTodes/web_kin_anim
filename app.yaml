@@ -9,6 +9,7 @@ resources:
   cpu: .5
   memory_gb: 1.3
 
+
 #Manual Scaling
 manual_scaling:
  instances: 1
