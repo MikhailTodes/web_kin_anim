@@ -116,6 +116,26 @@ def home():
     return render_template('index.html', ws_url=session['ros_ws_url'], \
                             user=session['username'], port=session['port'],\
                             ip=get_external_ip())
+    
+@app.route("/UR5" , methods=['GET', 'POST'])
+@login_required
+def UR5():
+    try:
+        #Use the -i interactive shell argument for server deployment. #Omit for local testing
+        user_db[session['user_index']].process = subprocess.Popen(["/bin/bash","-i","-c",\
+                                "roslaunch kinematics_animation ur5_web_animation.launch \
+                                ws_port:=%s" %session['port']])
+        # user_db[session['user_index']].process = subprocess.Popen(["/bin/bash","-i","-c","roscore -p %s" %session['port']])
+        logging.info('Child process started succesfully')   
+        flash("Started roscore for user %s on port %s" %(session['username'],session['port']))
+    except:
+        logging.error('Could not start process')
+        flash('Could not start process')
+    return render_template('ur5.html', ws_url=session['ros_ws_url'],\
+                                user=session['username'], port=session['port'],\
+                                ip=get_external_ip()) 
+
+
 
 @app.route("/start_process" , methods=['GET', 'POST'])
 @login_required
