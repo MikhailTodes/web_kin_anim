@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+	<h2>UR5 Page</h2>
+	<!-- <p>Click <a href="/start_process">start process</a> to start an aniation process for {{ user }} on port {{ port }}.  -->
+	You are logged in as {{user}} 
+	<br> Your server ip is {{ ip }} being served from a websocket on port {{ port }}.
+</div>
+
+<div class="button-container">
+	<br>
+	<form action="/stop_process" method="post">
+	<input class="btn btn-default" type="submit" value="Stop ROS">
+	</form>
+
+	<form action="/find_process" method="post">
+	<input class="btn btn-default" type="submit" value="ROS Status">
+	</form>
+
+	<form action="/home" method="post">
+	<input class="btn btn-default" type="submit" value="Refresh Simulation">
+	</form>
+
+	<form action="/logout" method="post">
+	<input class="btn btn-default" type="submit" value="Logout">
+	</form>
+
+
+	<form action="/UR5" method="post">
+	<input class="btn btn-default" type="submit" value="UR5">
+	</form>
+
+</div>
+
+<br>
+
+<div id="urdf"></div>
+
+{% endblock %}
